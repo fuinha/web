@@ -18,7 +18,7 @@ export interface IPet {
 	isServiceAnimal: boolean
 	color: string
 	breed: string
-	age: number
+	birthdate: Date
 	allergies: VisibleValue<string>
 	vaccinations: Array<IVaccination>
 }
@@ -48,7 +48,7 @@ export class Pet implements IPet, AsInterface<IPet> {
 
 	breed: string
 
-	age: number
+	birthdate: Date
 
 	allergies: VisibleValue<string>
 
