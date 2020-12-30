@@ -14,10 +14,8 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
 
 		const token = await firebaseAdmin.auth().verifyIdToken(cookies.token)
 
-		const { uid, email } = token
-
 		return {
-			props: { message: `Your email is ${email} and your UID is ${uid}.` },
+			props: { token },
 		}
 	} catch (err) {
 		// either the `token` cookie didn't exist
@@ -40,11 +38,11 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
 
 const Dashboard: NextPage<InferGetServerSidePropsType<
 	typeof getServerSideProps
->> = ({ message }) => {
+>> = ({ token }) => {
 	const { signOut } = useAuth()
 	return (
 		<>
-			<Text>{message}</Text>
+			<Text>{token.uid}</Text>
 			<Button onClick={signOut}>Sign Out</Button>
 		</>
 	)
