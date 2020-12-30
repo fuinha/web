@@ -1,0 +1,15 @@
+node_modules/
+.next/
+.vercel/
+public/
+
+.gitignore
+.eslintrc
+yarn.lock
+.prettierignore
+.env.local
+LICENSE
+
+firestore.*
+.firebaserc
+.env
