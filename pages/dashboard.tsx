@@ -10,6 +10,21 @@ import useAuth from '../src/shared/auth/hooks/index'
 import { User } from '../src/types/models/user/index'
 import { Pet } from '../src/types/models/pet/index'
 
+const Dashboard: NextPage<InferGetServerSidePropsType<
+	typeof getServerSideProps
+>> = ({ pet }) => {
+	const { signOut } = useAuth()
+	return (
+		<>
+			<Text>{pet.name}</Text>
+			<Button onClick={signOut}>Sign Out</Button>
+		</>
+	)
+}
+
+export default Dashboard
+
+// Sample for authentication
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
 	try {
 		const cookies = nookies.get(ctx)
@@ -42,17 +57,3 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
 		}
 	}
 }
-
-const Dashboard: NextPage<InferGetServerSidePropsType<
-	typeof getServerSideProps
->> = ({ pet }) => {
-	const { signOut } = useAuth()
-	return (
-		<>
-			<Text>{pet.name}</Text>
-			<Button onClick={signOut}>Sign Out</Button>
-		</>
-	)
-}
-
-export default Dashboard
