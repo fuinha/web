@@ -7,8 +7,8 @@ export interface IReminder {
 	enabled: boolean
 	frequency: ReminderFrequency
 	notificationMethod: ReminderNotificationMethod
-time: string
-name: string
+	time: string
+	name: string
 }
 
 export class Reminder implements IReminder, AsInterface<IReminder> {
@@ -22,7 +22,7 @@ export class Reminder implements IReminder, AsInterface<IReminder> {
 
 	time: string
 
-name: string
+	name: string
 
 	constructor(reminder: IReminder) {
 		Object.assign(this, reminder)
