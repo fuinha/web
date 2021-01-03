@@ -55,13 +55,14 @@ export class Pet implements IPet, AsInterface<IPet> {
 	vaccinations: Array<Vaccination>
 
 	constructor(id: string, _pet: IPet) {
-		let pet: IPet
+		const pet: Partial<IPet> = {}
 
 		Object.assign(pet, _pet)
 
 		pet.vet = new Vet(pet.vet)
 		pet.contacts = pet.contacts.map((x) => new Contact(x))
 		pet.reminders = pet.reminders.map((x) => new Reminder(x))
+		pet.vaccinations = pet.vaccinations.map((x) => new Vaccination(x))
 
 		Object.assign(this, { ...pet, id })
 	}
