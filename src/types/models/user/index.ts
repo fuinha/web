@@ -25,6 +25,7 @@ export class User implements IUser, AsInterface<IUser> {
 	public static async get(id: string): Promise<User> {
 		return firebaseAdmin
 			.firestore()
+			.collection('users')
 			.doc(id)
 			.get()
 			.then((doc) => {
@@ -38,6 +39,7 @@ export class User implements IUser, AsInterface<IUser> {
 	async getClient(id: string): Promise<User> {
 		return firebase
 			.firestore()
+			.collection('users')
 			.doc(id)
 			.get()
 			.then((doc) => {

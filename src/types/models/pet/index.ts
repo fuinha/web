@@ -90,6 +90,7 @@ export class Pet implements IPet, AsInterface<IPet> {
 	public static async get(id: string): Promise<Pet> {
 		return firebaseAdmin
 			.firestore()
+			.collection('pets')
 			.doc(id)
 			.get()
 			.then((doc) => {
@@ -103,6 +104,7 @@ export class Pet implements IPet, AsInterface<IPet> {
 	async getClient(id: string): Promise<Pet> {
 		return firebase
 			.firestore()
+			.collection('pets')
 			.doc(id)
 			.get()
 			.then((doc) => {
