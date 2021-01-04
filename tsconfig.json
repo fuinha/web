@@ -16,7 +16,10 @@
 		"baseUrl": ".",
 		"paths": {
 			"#types/*": ["src/types/*"],
-			"#fire/*": ["src/shared/firebase/*"]
+			"#fire/*": ["src/shared/firebase/*"],
+			"#theme/*": ["src/shared/theme/*"],
+			"#components/*": ["src/shared/components/*"],
+			"#data/*": ["src/shared/data/*"]
 		}
 	},
 	"include": [

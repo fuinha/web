@@ -1,4 +1,4 @@
-import { Box, Button, Text } from '@chakra-ui/core'
+import { Box, Button, Text } from '@chakra-ui/react'
 import { NextPage } from 'next'
 import firebase from '../src/shared/firebase/client'
 import useAuth from '../src/shared/auth/hooks/index'

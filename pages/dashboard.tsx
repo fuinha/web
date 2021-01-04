@@ -4,7 +4,7 @@ import {
 	NextPage,
 } from 'next'
 import nookies from 'nookies'
-import { Button, Text } from '@chakra-ui/core'
+import { Button, Text } from '@chakra-ui/react'
 import firebaseAdmin from '../src/shared/firebase/admin'
 import useAuth from '../src/shared/auth/hooks/index'
 import { User } from '../src/types/models/user/index'
