@@ -55,7 +55,7 @@ export class Pet implements IPet, AsInterface<IPet> {
 	vaccinations: Array<Vaccination>
 
 	constructor(id: string, _pet: IPet) {
-		const pet: Partial<IPet> = {}
+		const pet = {} as IPet
 
 		Object.assign(pet, _pet)
 
