@@ -19,7 +19,8 @@
 			"#fire/*": ["src/shared/firebase/*"],
 			"#theme/*": ["src/shared/theme/*"],
 			"#components/*": ["src/shared/components/*"],
-			"#data/*": ["src/shared/data/*"]
+			"#data/*": ["src/shared/data/*"],
+			"#auth/*": ["src/shared/auth/*"]
 		}
 	},
 	"include": [
