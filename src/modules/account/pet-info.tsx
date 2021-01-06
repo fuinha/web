@@ -74,7 +74,7 @@ const PetInformationSchema = Yup.object().shape({
 		.required(),
 })
 
-const PetInfoPage = () => {
+const PetInfo = () => {
 	const [isEditable, setEditable] = useState(false)
 	const toast = useToast()
 	const router = useRouter()
@@ -397,4 +397,4 @@ const PetInfoPage = () => {
 	)
 }
 
-export default PetInfoPage
+export default PetInfo
