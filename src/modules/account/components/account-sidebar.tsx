@@ -92,7 +92,7 @@ const AccountSidebar: React.FC = () => {
 					icon={<HiOutlinePhone />}>
 					Contact Info
 				</AccountSidebarLink>
-				<AccountSidebarLink href="/account/petinfo" icon={<HiOutlineHeart />}>
+				<AccountSidebarLink href="/account/pet-info" icon={<HiOutlineHeart />}>
 					Pet Info
 				</AccountSidebarLink>
 				<AccountSidebarLink
