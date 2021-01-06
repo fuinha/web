@@ -88,7 +88,7 @@ const AccountSidebar: React.FC = () => {
 					Dashboard
 				</AccountSidebarLink>
 				<AccountSidebarLink
-					href="/account/contactinfo"
+					href="/account/contact-info"
 					icon={<HiOutlinePhone />}>
 					Contact Info
 				</AccountSidebarLink>

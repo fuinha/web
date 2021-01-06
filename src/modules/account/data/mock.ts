@@ -8,7 +8,46 @@ export const user: IUser = {
 
 export const pet: IPet = {
 	name: 'Milo',
-	contacts: [],
+	contacts: [
+		{
+			level: 'primary',
+			name: {
+				value: 'Cameron Wilson',
+				visible: true,
+			},
+			address: {
+				value: '123 Main Street, New York, NY 10030',
+				visible: true,
+			},
+			phoneNumber: {
+				value: '(555) 123 4567',
+				visible: true,
+			},
+			email: {
+				value: 'cameronwilson@gmail.com',
+				visible: true,
+			},
+		},
+		{
+			level: 'secondary',
+			name: {
+				value: 'Aditya Patel',
+				visible: true,
+			},
+			address: {
+				value: '123 Main Street, New York, NY 10030',
+				visible: true,
+			},
+			phoneNumber: {
+				value: '(555) 765 4321',
+				visible: true,
+			},
+			email: {
+				value: 'adityapatel@gmail.com',
+				visible: true,
+			},
+		},
+	],
 	reminders: [],
 	vaccinations: [],
 	isLost: false,
