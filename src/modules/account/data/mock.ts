@@ -55,11 +55,11 @@ export const pet: IPet = {
 	breed: 'Weimaraner',
 	species: 'Dog',
 	allergies: {
-		value: '',
+		value: 'None',
 		visible: true,
 	},
 	specialNeeds: {
-		value: '',
+		value: 'None',
 		visible: true,
 	},
 	temperament: 'Friendly',
@@ -67,11 +67,11 @@ export const pet: IPet = {
 	birthdate: new Date('2010-01-01'),
 	vet: {
 		name: {
-			value: '',
+			value: 'Dr. Brown',
 			visible: true,
 		},
 		phoneNumber: {
-			value: '',
+			value: '(555) 024 6810',
 			visible: true,
 		},
 	},

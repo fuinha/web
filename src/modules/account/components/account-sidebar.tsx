@@ -96,7 +96,7 @@ const AccountSidebar: React.FC = () => {
 					Pet Info
 				</AccountSidebarLink>
 				<AccountSidebarLink
-					href="/account/medicalinfo"
+					href="/account/medical-info"
 					icon={<HiOutlineClipboardList />}>
 					Medical Info
 				</AccountSidebarLink>
