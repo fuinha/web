@@ -4,7 +4,7 @@ import { Box, Flex, IconButton, Stack, Text, useToast } from '@chakra-ui/react'
 import { AddIcon, ChevronRightIcon, DeleteIcon } from '@chakra-ui/icons'
 import DatePicker from 'react-datepicker'
 import Dropzone from 'react-dropzone'
-import { Formik, Field } from 'formik'
+import { Formik, Form, Field } from 'formik'
 import { motion } from 'framer-motion'
 
 import * as Yup from 'yup'
@@ -106,120 +106,124 @@ const VaccinationHistoryStep: React.FC<VaccinationHistoryStepProps> = ({
 								vaccination”.
 							</Text>
 						</Flex>
-						<Field
-							as={OnboardingInput}
-							name="name"
-							placeholder="Vaccination Name"
-						/>
-						<DatePicker
-							selected={formValues.date}
-							showPopperArrow={false}
-							onChange={(date) => setFieldValue('date', date)}
-							placeholderText="Date of Vaccination"
-							customInput={<OnboardingInput />}
-						/>
-						<DatePicker
-							selected={formValues.expirationDate}
-							showPopperArrow={false}
-							onChange={(date) => setFieldValue('expirationDate', date)}
-							placeholderText="Vaccination Expiration Date"
-							customInput={<OnboardingInput />}
-						/>
-						<Dropzone
-							onDrop={(acceptedFiles) => setFiles(acceptedFiles)}
-							maxFiles={1}
-							accept="image/*, application/pdf"
-							onDropRejected={() =>
-								toast({
-									title: 'File error.',
-									description:
-										'You can only upload one PDF or image per vaccination.',
-									status: 'error',
-									duration: 5000,
-									isClosable: true,
-								})
-							}>
-							{({ getRootProps, getInputProps }) => (
-								<Flex
-									height={100}
-									border="2px dashed"
-									borderColor="petcode.neutral.500"
-									_focus={{ borderColor: 'petcode.blue.400' }}
-									rounded="md"
-									alignItems="center"
-									justifyContent="center"
-									{...getRootProps()}>
-									<input {...getInputProps()} />
-									<Text>Upload your vaccination record here</Text>
-								</Flex>
-							)}
-						</Dropzone>
-						<Stack>
-							{files.map((file, idx) => (
-								<MotionStack
-									key={file.name}
-									initial={{ opacity: 0 }}
-									animate={{ opacity: 1 }}
-									isInline
-									alignItems="center"
-									fontSize="lg"
-									backgroundColor="petcode.neutral.200"
-									paddingX={4}
-									paddingY={2}
-									rounded="md">
-									<Text color="petcode.blue.400">{file.name}</Text>
-									<Box flexGrow={1} />
-									<Text>{file.size} B</Text>
-									<IconButton
-										aria-label="Delete"
-										onClick={() =>
-											setFieldValue(
-												'files',
-												files
-													.slice(0, idx)
-													.concat(files.slice(idx + 1, files.length))
-											)
-										}
-										colorScheme="red"
-										icon={<DeleteIcon />}
-										size="sm"
-									/>
-								</MotionStack>
-							))}
-						</Stack>
-						<UnifiedErrorMessage touched={touched} errors={errors} />
-						<Stack isInline justifyContent="flex-end" spacing={3}>
-							<BaseButton
-								colorScheme="petcode.yellow"
-								onClick={(e) => {
-									setIsAddingVaccinations(true)
-									handleSubmit(e as any)
-								}}>
-								<Text textTransform="uppercase" letterSpacing="0.07em">
-									Add Vaccination
-								</Text>
-								<AddIcon boxSize="14px" marginLeft={2} />
-							</BaseButton>
-							<BaseButton
-								colorScheme="petcode.blue"
-								onClick={() => {
-									dispatch(onboardingActions.setStep('reminders'))
-								}}>
-								<Text textTransform="uppercase" letterSpacing="0.07em">
-									Skip
-								</Text>
-								<ChevronRightIcon boxSize="24px" />
-							</BaseButton>
-							<BaseButton
-								type="submit"
-								colorScheme="petcode.blue"
-								onClick={handleSubmit as any}>
-								<Text textTransform="uppercase" letterSpacing="0.07em">
-									Next Step
-								</Text>
-								<ChevronRightIcon boxSize="24px" />
-							</BaseButton>
-						</Stack>
+						<Form>
+							<Stack spacing={6}>
+								<Field
+									as={OnboardingInput}
+									name="name"
+									placeholder="Vaccination Name"
+								/>
+								<DatePicker
+									selected={formValues.date}
+									showPopperArrow={false}
+									onChange={(date) => setFieldValue('date', date)}
+									placeholderText="Date of Vaccination"
+									customInput={<OnboardingInput />}
+								/>
+								<DatePicker
+									selected={formValues.expirationDate}
+									showPopperArrow={false}
+									onChange={(date) => setFieldValue('expirationDate', date)}
+									placeholderText="Vaccination Expiration Date"
+									customInput={<OnboardingInput />}
+								/>
+								<Dropzone
+									onDrop={(acceptedFiles) => setFiles(acceptedFiles)}
+									maxFiles={1}
+									accept="image/*, application/pdf"
+									onDropRejected={() =>
+										toast({
+											title: 'File error.',
+											description:
+												'You can only upload one PDF or image per vaccination.',
+											status: 'error',
+											duration: 5000,
+											isClosable: true,
+										})
+									}>
+									{({ getRootProps, getInputProps }) => (
+										<Flex
+											height={100}
+											border="2px dashed"
+											borderColor="petcode.neutral.500"
+											_focus={{ borderColor: 'petcode.blue.400' }}
+											rounded="md"
+											alignItems="center"
+											justifyContent="center"
+											{...getRootProps()}>
+											<input {...getInputProps()} />
+											<Text>Upload your vaccination record here</Text>
+										</Flex>
+									)}
+								</Dropzone>
+								<Stack>
+									{files.map((file, idx) => (
+										<MotionStack
+											key={file.name}
+											initial={{ opacity: 0 }}
+											animate={{ opacity: 1 }}
+											isInline
+											alignItems="center"
+											fontSize="lg"
+											backgroundColor="petcode.neutral.200"
+											paddingX={4}
+											paddingY={2}
+											rounded="md">
+											<Text color="petcode.blue.400">{file.name}</Text>
+											<Box flexGrow={1} />
+											<Text>{file.size} B</Text>
+											<IconButton
+												aria-label="Delete"
+												onClick={() =>
+													setFieldValue(
+														'files',
+														files
+															.slice(0, idx)
+															.concat(files.slice(idx + 1, files.length))
+													)
+												}
+												colorScheme="red"
+												icon={<DeleteIcon />}
+												size="sm"
+											/>
+										</MotionStack>
+									))}
+								</Stack>
+								<UnifiedErrorMessage touched={touched} errors={errors} />
+								<Stack isInline justifyContent="flex-end" spacing={3}>
+									<BaseButton
+										colorScheme="petcode.yellow"
+										onClick={(e) => {
+											setIsAddingVaccinations(true)
+											handleSubmit(e as any)
+										}}>
+										<Text textTransform="uppercase" letterSpacing="0.07em">
+											Add Vaccination
+										</Text>
+										<AddIcon boxSize="14px" marginLeft={2} />
+									</BaseButton>
+									<BaseButton
+										colorScheme="petcode.blue"
+										onClick={() => {
+											dispatch(onboardingActions.setStep('reminders'))
+										}}>
+										<Text textTransform="uppercase" letterSpacing="0.07em">
+											Skip
+										</Text>
+										<ChevronRightIcon boxSize="24px" />
+									</BaseButton>
+									<BaseButton
+										type="submit"
+										colorScheme="petcode.blue"
+										onClick={handleSubmit as any}>
+										<Text textTransform="uppercase" letterSpacing="0.07em">
+											Next Step
+										</Text>
+										<ChevronRightIcon boxSize="24px" />
+									</BaseButton>
+								</Stack>
+							</Stack>
+						</Form>
 						<Box flexGrow={1} />
 					</OnboardingContainer>
 				)}

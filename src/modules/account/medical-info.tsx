@@ -15,7 +15,7 @@ import {
 	useToast,
 } from '@chakra-ui/react'
 import DatePicker from 'react-datepicker'
-import { Formik, Field, useFormikContext } from 'formik'
+import { Formik, Form, Field, useFormikContext } from 'formik'
 import { HiOutlinePencil, HiCheck, HiOutlinePlus } from 'react-icons/hi'
 
 import * as Yup from 'yup'
@@ -97,65 +97,67 @@ const AddVaccinationModal: React.FC<AddVaccinationModalProps> = ({
 					<Text>Add Vaccination</Text>
 				</ModalHeader>
 				<ModalCloseButton />
-				<Formik
-					initialValues={
-						{
-							name: '',
-							date: null,
-							expirationDate: null,
-						} as IVaccination
-					}
-					validationSchema={VaccinationSchema}
-					onSubmit={(values) => {
-						// TODO: create new vaccination
-						console.log('Creating ', values)
-						setShown(false)
-						toast({
-							title: 'Vaccination added.',
-							description: 'Your vaccination was added successfully.',
-							status: 'success',
-							duration: 5000,
-							isClosable: true,
-						})
-					}}>
-					{({ errors, values, setFieldValue, handleSubmit, touched }) => (
-						<ModalBody>
-							<Field
-								variant="flushed"
-								placeholder="Vaccination Name"
-								as={AccountInput}
-								name="name"
-							/>
-							<Text textStyle="info-field-label">Vaccination Name</Text>
-							<DatePicker
-								selected={values.date}
-								showPopperArrow={false}
-								onChange={(date) => setFieldValue('date', date)}
-								placeholderText="Vaccination Date"
-								customInput={<AccountInput variant="flushed" />}
-							/>
-							<Text textStyle="info-field-label">Vaccination Date</Text>
-							<DatePicker
-								selected={values.expirationDate}
-								showPopperArrow={false}
-								onChange={(date) => setFieldValue('expirationDate', date)}
-								placeholderText="Vaccination Expiration Date"
-								customInput={<AccountInput variant="flushed" />}
-							/>
-							<Text textStyle="info-field-label">
-								Vaccination Expiration Date
-							</Text>
-							<UnifiedErrorMessage errors={errors} touched={touched} />
-							<BaseButton
-								colorScheme="petcode.blue"
-								color="white"
-								marginTop={3}
-								onClick={handleSubmit as any}>
-								<Text>Save</Text>
-							</BaseButton>
-						</ModalBody>
-					)}
-				</Formik>
+				<ModalBody>
+					<Formik
+						initialValues={
+							{
+								name: '',
+								date: null,
+								expirationDate: null,
+							} as IVaccination
+						}
+						validationSchema={VaccinationSchema}
+						onSubmit={(values) => {
+							// TODO: create new vaccination
+							console.log('Creating ', values)
+							setShown(false)
+							toast({
+								title: 'Vaccination added.',
+								description: 'Your vaccination was added successfully.',
+								status: 'success',
+								duration: 5000,
+								isClosable: true,
+							})
+						}}>
+						{({ errors, values, setFieldValue, handleSubmit, touched }) => (
+							<Form>
+								<Field
+									variant="flushed"
+									placeholder="Vaccination Name"
+									as={AccountInput}
+									name="name"
+								/>
+								<Text textStyle="info-field-label">Vaccination Name</Text>
+								<DatePicker
+									selected={values.date}
+									showPopperArrow={false}
+									onChange={(date) => setFieldValue('date', date)}
+									placeholderText="Vaccination Date"
+									customInput={<AccountInput variant="flushed" />}
+								/>
+								<Text textStyle="info-field-label">Vaccination Date</Text>
+								<DatePicker
+									selected={values.expirationDate}
+									showPopperArrow={false}
+									onChange={(date) => setFieldValue('expirationDate', date)}
+									placeholderText="Vaccination Expiration Date"
+									customInput={<AccountInput variant="flushed" />}
+								/>
+								<Text textStyle="info-field-label">
+									Vaccination Expiration Date
+								</Text>
+								<UnifiedErrorMessage errors={errors} touched={touched} />
+								<BaseButton
+									colorScheme="petcode.blue"
+									color="white"
+									marginTop={3}
+									onClick={handleSubmit as any}>
+									<Text>Save</Text>
+								</BaseButton>
+							</Form>
+						)}
+					</Formik>
+				</ModalBody>
 			</ModalContent>
 		</Modal>
 	)
