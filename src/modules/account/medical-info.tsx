@@ -78,11 +78,13 @@ const VaccinationSchema = Yup.object().shape({
 type AddVaccinationModalProps = {
 	isShown: boolean
 	setShown: (b: boolean) => void
+	onCreate: (v: IVaccination) => void
 }
 
 const AddVaccinationModal: React.FC<AddVaccinationModalProps> = ({
 	isShown,
 	setShown,
+	onCreate,
 }) => {
 	const toast = useToast()
 
@@ -108,8 +110,7 @@ const AddVaccinationModal: React.FC<AddVaccinationModalProps> = ({
 						}
 						validationSchema={VaccinationSchema}
 						onSubmit={(values) => {
-							// TODO: create new vaccination
-							console.log('Creating ', values)
+							onCreate(values)
 							setShown(false)
 							toast({
 								title: 'Vaccination added.',
@@ -311,6 +312,10 @@ const MedicalInfo = () => {
 						<AddVaccinationModal
 							isShown={isModalShown}
 							setShown={setModalShown}
+							onCreate={(vaccination) => {
+								// TODO: create new vaccination
+								console.log('Creating ', vaccination)
+							}}
 						/>
 					</Stack>
 				)}

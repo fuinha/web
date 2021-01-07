@@ -11,7 +11,6 @@ import {
 } from '@chakra-ui/react'
 import DatePicker from 'react-datepicker'
 import { HiOutlinePencil, HiOutlineTrash, HiCheck } from 'react-icons/hi'
-import { OptionTypeBase } from 'react-select'
 
 import moment from 'moment'
 
@@ -58,26 +57,35 @@ const ReminderItem: React.FC<ReminderItemProps> = ({
 						<Box display="inline-block" width="150px">
 							<AccountSelect
 								fontSize="1rem"
-								value={{
-									label: editedReminder.frequency,
-									value: editedReminder.frequency,
-								}}
-								onChange={(option) =>
+								options={['Weekly', 'Daily', 'Hourly'].map((option) => ({
+									label: option,
+									value: option.toLowerCase(),
+								}))}
+								value={
+									editedReminder.frequency
+										? {
+												label: editedReminder.frequency
+													.charAt(0)
+													.toUpperCase()
+													.concat(editedReminder.frequency.slice(1)),
+												value: editedReminder.frequency,
+										  }
+										: null
+								}
+								onChange={(newValue: any) => {
 									setEditedReminder({
 										...editedReminder,
-										frequency: (option as OptionTypeBase).value,
+										frequency: newValue.value.toLowerCase(),
 									})
-								}
-								options={['One-Time', 'Daily', 'Weekly', 'Monthly'].map(
-									(option) => ({
-										label: option,
-										value: option,
-									})
-								)}
+								}}
+								placeholder="Reminder Frequency"
 							/>
 						</Box>
 					) : (
 						reminder.frequency
+							.charAt(0)
+							.toUpperCase()
+							.concat(reminder.frequency.substr(1))
 					)}
 				</Text>
 			</Box>
