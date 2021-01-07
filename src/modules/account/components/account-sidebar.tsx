@@ -106,7 +106,7 @@ const AccountSidebar: React.FC = () => {
 					Reminders
 				</AccountSidebarLink>
 				<AccountSidebarLink
-					href="/account/scanlocations"
+					href="/account/scan-locations"
 					icon={<HiOutlineLocationMarker />}>
 					Scan Locations
 				</AccountSidebarLink>
