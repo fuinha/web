@@ -199,7 +199,7 @@ const Overlays: React.FC<OverlaysProps> = ({ setModalShown }) => (
 	</ExpandButton>
 )
 
-const RemindersPage = () => {
+const Reminders = () => {
 	const [isModalShown, setModalShown] = useState(false)
 
 	const [reminders, setReminders] = useState<IReminder[]>(pet.reminders)
@@ -253,4 +253,4 @@ const RemindersPage = () => {
 	)
 }
 
-export default RemindersPage
+export default Reminders
